@@ -11,6 +11,7 @@ export class AddCaracteristicasComponent implements OnInit{
   productos!:ProductoInterface|any
   caracteristicas!:CaracteristicaInterface|any
   prod!:number
+  carac:Array<string>=[]
   constructor(private service:AppServiceService) {
   }
   ngOnInit(): void {
@@ -31,13 +32,14 @@ export class AddCaracteristicasComponent implements OnInit{
   }
   onCheckboxChange(event: any) {
     if(event.target.checked){
-      /*this.ids.push(event.target.value)*/
+      this.carac.push(event.target.value)
     }else {
-      /*let index=this.ids.indexOf(event.target.value)
+      let index=this.carac.indexOf(event.target.value)
       if(index!==-1){
-        this.ids.splice(index,1)
-      }*/
+        this.carac.splice(index,1)
+      }
     }
     /*this.ids[0]=event.target.value*/
+    console.log(this.carac)
   }
 }

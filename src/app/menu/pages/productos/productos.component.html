@@ -33,7 +33,7 @@
         <td>{{i.precio}}</td>
         <td>{{i.descripcion}}</td>
         <td>{{i.existencias}}</td>
-        <td>{{i.id_categoria.nombre}}</td>
+        <td>{{i.id_categoria.descripcion}}</td>
         <td>{{i.id_marca.nombre}}</td>
         <td><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productsModal" (click)="updateProducto(j)"><i class="bi bi-pencil-square"></i></button></td>
         <td><button class="btn btn-danger" (click)="deleteProducto(i.clave)"><i class="bi bi-trash3"></i></button></td>

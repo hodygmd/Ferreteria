@@ -9,6 +9,6 @@
 <div class="d-flex row mt-5">
    <div class="bg-info text-center p-1 border rounded-2 col-3 mb-3 mx-5" *ngFor="let i of caracteristicas">
      {{i.descripcion}}
-     <input type="checkbox" id="{{i.id}}" [value]="i.id" (change)="onCheckboxChange($event)">
+     <input type="checkbox" id="{{i.id}}" [value]="i.descripcion" (change)="onCheckboxChange($event)">
    </div>
  </div>
