@@ -1,0 +1,48 @@
+<div>
+  <nav class="navbar navbar-dark fixed-top">
+    <div class="container-fluid">
+      <!--<a class="navbar-brand" href="#">Offcanvas dark navbar</a>!-->
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+              aria-controls="offcanvasDarkNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar"
+           aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                  aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-start">
+            <li class="nav-item">
+              <button class="custom-btn btn-8 mb-4" routerLink="productos"><span>Productos</span></button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-btn btn-8 mb-4" routerLink="categorias"><span>Categorias</span></button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-btn btn-8 mb-4" routerLink="marcas"><span>Marcas</span></button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-btn btn-8 mb-4" routerLink="unidades-medida"><span>Unidades de Medida</span>
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-btn btn-8 mb-4" routerLink="caracteristicas"><span>Caracteristicas</span>
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="custom-btn btn-8 mb-4" routerLink="add-caracteristicas"><span>Agregar Caracteristicas</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container cont p-5">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

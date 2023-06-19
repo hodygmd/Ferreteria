@@ -1,0 +1,103 @@
+<div class="container mt-5" >
+  <div class="text-center">
+    <button class="custom-btn btn-5" data-bs-toggle="modal" data-bs-target="#productsModal" (click)="setNull()">
+      <span class="mx-3">Agregar Producto</span>
+    </button>
+  </div>
+  <!--<div class="d-flex row mt-5">
+    <div class="bg-info text-center p-1 border rounded-2 col-3 mb-3 mx-5" *ngFor="let i of products">{{i.nombre}}<br>
+      {{i.descripcion}}
+    </div>
+  </div>!-->
+  <div class="mx-5 mt-5">
+    <table bordered class="text-center table table-striped border border-2 border-dark">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Clave</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Descripcion</th>
+        <th>Existencias</th>
+        <th>Categoria</th>
+        <th>Marca</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody class="table-group-divider">
+      <tr class="align-middle trbody" *ngFor="let i of productos;let j=index">
+        <td>{{j}}</td>
+        <td>{{i.clave}}</td>
+        <td>{{i.nombre}}</td>
+        <td>{{i.precio}}</td>
+        <td>{{i.descripcion}}</td>
+        <td>{{i.existencias}}</td>
+        <td>{{i.id_categoria.nombre}}</td>
+        <td>{{i.id_marca.nombre}}</td>
+        <td><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productsModal" (click)="updateProducto(j)"><i class="bi bi-pencil-square"></i></button></td>
+        <td><button class="btn btn-danger" (click)="deleteProducto(i.clave)"><i class="bi bi-trash3"></i></button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="productsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Producto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label>
+          Nombre:
+          <input type="text" class="ms-2" [(ngModel)]="nom">
+        </label>
+        <br><br>
+        <label>
+          Precio:
+          <input type="number" class="ms-2" [(ngModel)]="prec">
+        </label>
+        <br><br>
+        <label>
+          <p>Descripcion:</p>
+          <textarea required style="width: 20rem;height: 5rem" [(ngModel)]="desc"></textarea>
+        </label>
+        <br><br>
+        <label>
+          Stock Maximo:
+          <input type="number" class="ms-2" [(ngModel)]="stmax">
+        </label>
+        <br><br>
+        <label>
+          Stock Minimo:
+          <input type="number" class="ms-2" [(ngModel)]="stmin">
+        </label>
+        <br><br>
+        <label>
+          Existencias:
+          <input type="number" class="ms-2" [(ngModel)]="exis">
+        </label>
+        <br><br>
+        <label>
+          Categoria:
+          <select [(ngModel)]="cat" class="ms-2" required>
+            <option *ngFor="let i of categorias" [value]="i.id">{{i.descripcion}}</option>
+          </select>
+        </label>
+        <label>
+          Marca:
+          <select [(ngModel)]="marc" class="ms-2" required>
+            <option *ngFor="let i of marcas" [value]="i.id">{{i.nombre}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success" (click)="createProducto(nom,desc,parseFloat(prec),parseInt(stmin),parseInt(stmax),parseInt(exis))" data-bs-dismiss="modal">{{textButtonSubmit}}</button>
+      </div>
+    </div>
+  </div>
+</div>

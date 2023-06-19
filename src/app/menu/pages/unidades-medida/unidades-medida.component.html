@@ -1,0 +1,55 @@
+<div class="container mt-5">
+  <div class="text-center">
+    <button class="custom-btn btn-5" data-bs-toggle="modal" data-bs-target="#productsModal"
+            (click)="setNull()">
+      <span class="mx-3">Agregar Unidad de Medida</span>
+    </button>
+  </div>
+  <div class="mx-5 mt-5">
+    <table bordered class="text-center table table-striped border border-2 border-dark">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Unidad</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody class="table-group-divider">
+      <tr class="align-middle trbody" *ngFor="let i of unidades;let j=index">
+        <td>{{j}}</td>
+        <td>{{i.unidad}}</td>
+        <td>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productsModal"
+                  (click)="updateUnidadMedida(j)"><i class="bi bi-pencil-square"></i></button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteUnidadMedida(i.id)"><i class="bi bi-trash3"></i></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="productsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Unidad de Medida</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label>
+          Unidad de Medida:
+          <input type="text" class="ms-2" [(ngModel)]="uni">
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success" (click)="createUnidadMedida(uni)"
+                data-bs-dismiss="modal">{{textButtonSubmit}}</button>
+      </div>
+    </div>
+  </div>
+</div>
