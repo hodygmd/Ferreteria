@@ -11,8 +11,8 @@
       <tr>
         <th>#</th>
         <th>Descripcion</th>
-        <th>Unidad de Medida</th>
-        <th>Medida</th>
+        <!--<th>Unidad de Medida</th>
+        <th>Medida</th>-->
         <th></th>
         <th></th>
       </tr>
@@ -21,8 +21,8 @@
       <tr class="align-middle trbody" *ngFor="let i of caracteristicas;let j=index">
         <td>{{j}}</td>
         <td>{{i.descripcion}}</td>
-        <td>{{i.id_unidad_medida.unidad}}</td>
-        <td>{{i.medida}}</td>
+        <!--<td>{{i.id_unidad_medida.unidad}}</td>
+        <td>{{i.medida}}</td>-->
         <td>
           <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productsModal"
                   (click)="updateCaracteristica(j)"><i class="bi bi-pencil-square"></i></button>
@@ -48,22 +48,10 @@
           Descripcion:
           <input type="text" class="ms-2" [(ngModel)]="desc">
         </label>
-        <br><br>
-        <label>
-          Unidad de Medida:
-          <select [(ngModel)]="uni" class="ms-2" required>
-            <option *ngFor="let i of unidades" [value]="i.id">{{i.unidad}}</option>
-          </select>
-        </label>
-        <br><br>
-        <label>
-          Medida:
-          <input type="number" class="ms-2" [(ngModel)]="med">
-        </label>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-success" (click)="createCaracteristica(desc,parseFloat(med))"
+        <button type="submit" class="btn btn-success" (click)="createCaracteristica(desc)"
                 data-bs-dismiss="modal">{{textButtonSubmit}}</button>
       </div>
     </div>

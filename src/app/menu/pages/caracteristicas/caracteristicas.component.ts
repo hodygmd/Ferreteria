@@ -9,11 +9,8 @@ import {CaracteristicaInterface, UnidadMedidaInterface} from "../../../Interface
 })
 export class CaracteristicasComponent implements OnInit{
   caracteristicas!:CaracteristicaInterface|any
-  unidades!:UnidadMedidaInterface|any
-  uni:number=1
   id!:number
   desc!:string
-  med!:string
   editar:boolean=false
   textButtonSubmit:string='Add'
 
@@ -28,20 +25,13 @@ export class CaracteristicasComponent implements OnInit{
         console.log(error)
       }
     )
-    this.service.getUnidadesMedida().subscribe(
-      data=>{
-        this.unidades=data
-      },error => {
-        console.log(error)
-      }
-    )
   }
-  createCaracteristica(desc:string,med:number){
-    if(desc===''||med===null){
+  createCaracteristica(desc:string){
+    if(desc===''){
       alert('Llena todos los campos')
     }else{
       if(!this.editar){
-        this.service.createCaracteristica(desc,this.uni,med).subscribe(
+        this.service.createCaracteristica(desc).subscribe(
           reponse=>{
             console.log(reponse)
             this.ngOnInit()
@@ -50,7 +40,7 @@ export class CaracteristicasComponent implements OnInit{
           }
         )
       }else{
-        this.service.updateCaracteristica(this.id,desc,this.uni,med).subscribe(
+        this.service.updateCaracteristica(this.id,desc).subscribe(
           response=>{
             console.log(response)
             this.ngOnInit()
@@ -64,8 +54,8 @@ export class CaracteristicasComponent implements OnInit{
   updateCaracteristica(index:number){
     this.id=this.caracteristicas[index].id
     this.desc=this.caracteristicas[index].descripcion
-    this.uni=this.caracteristicas[index].id_unidad_medida.id
-    this.med=this.caracteristicas[index].medida
+    /*this.uni=this.caracteristicas[index].id_unidad_medida.id
+    this.med=this.caracteristicas[index].medida*/
     this.editar=true
     this.textButtonSubmit='Edit'
   }
@@ -81,8 +71,8 @@ export class CaracteristicasComponent implements OnInit{
   }
   setNull(){
     this.desc=''
-    this.uni=1
-    this.med=''
+    /*this.uni=1
+    this.med=''*/
     this.editar=false
     this.textButtonSubmit='Add'
   }

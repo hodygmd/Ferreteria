@@ -1,14 +1,85 @@
 <div class="text-center">
   <label>
-    Productos:
-    <select [(ngModel)]="prod" class="ms-2" required>
-      <option *ngFor="let i of productos" [value]="i.id">{{i.nombre}}</option>
+    <p class="fw-bold">PRODUCTOS:</p>
+    <select [(ngModel)]="prod" class="ms-2" required (change)="change()">
+      <option *ngFor="let i of productos" [value]="i.clave">{{i.nombre}}</option>
     </select>
   </label>
 </div>
-<div class="d-flex row mt-5">
-   <div class="bg-info text-center p-1 border rounded-2 col-3 mb-3 mx-5" *ngFor="let i of caracteristicas">
-     {{i.descripcion}}
-     <input type="checkbox" id="{{i.id}}" [value]="i.descripcion" (change)="onCheckboxChange($event)">
-   </div>
- </div>
+<div class="text-center mt-5">
+  <button class="custom-btn btn-5" data-bs-toggle="modal" data-bs-target="#productsModal"
+          [hidden]="!mostrar" (click)="setNull()">
+    <span class="mx-3">Agregar Caracteristica</span>
+  </button>
+</div>
+<!--<div class="fixed-bottom d-flex justify-content-center pb-5">
+  <button class="btn btn-success" (click)="addCaracteristicas()">Agregar Caracteristicas</button>
+</div>-->
+<div class="mx-5 mt-5" [hidden]="!mostrarT">
+  <table bordered class="text-center table table-striped border border-2 border-dark">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Producto</th>
+      <th>Caracteristica</th>
+      <th>Unidad de Medida</th>
+      <th>Medida</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    <tr class="align-middle trbody" *ngFor="let i of pcs;let j=index">
+      <td>{{j}}</td>
+      <td>{{i.clave_producto.nombre}}</td>
+      <td>{{i.id_caracteristica.descripcion}}</td>
+      <td>{{i.id_unidad_medida.unidad}}</td>
+      <td>{{i.medida}}</td>
+      <!--<td>
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productsModal"
+                ><i class="bi bi-pencil-square"></i></button>
+      </td>-->
+      <td>
+        <button class="btn btn-danger" (click)="deleteProductoCaracteristica(i.clave_producto.clave,i.id_caracteristica.id)"><i class="bi bi-trash3"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="productsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Caracteristicas</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex row justify-content-center">
+          <div class="caracteristicas-fondo text-center p-1 border rounded-2 col-3 mb-3 mx-3" *ngFor="let i of caracteristicas;let j=index">
+            <p class="fw-bold">{{i.descripcion}}</p>
+            <label>
+              Unidad de Medida:
+              <select [(ngModel)]="uni[j]" class="ms-2" required>
+                <option *ngFor="let i of unidades" [value]="i.id">{{i.unidad}}</option>
+              </select>
+            </label>
+            <br><br>
+            <label>
+              Medida:
+              <br>
+              <input type="number" class="ms-2" [(ngModel)]="med[j]" style="width: 5rem">
+            </label>
+            <br><br>
+            <input type="checkbox" [(ngModel)]="checkboxMarcado[j]" id="{{i.id}}" [value]="i.id" (change)="onCheckboxChange($event,j,i.id)">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success" (click)="addCaracteristicas()"
+                data-bs-dismiss="modal">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+

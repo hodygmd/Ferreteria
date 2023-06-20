@@ -12,6 +12,8 @@ import {AddMarca} from "./Classes/add-marca";
 import {AddCategoria} from "./Classes/add-categoria";
 import {AddUnidadMedida} from "./Classes/add-unidad-medida";
 import {AddCaracteristica} from "./Classes/add-caracteristica";
+import {AddProductoCaracteristica} from "./Classes/add-producto-caracteristica";
+import {DeleteProductoCaracteristica} from "./Classes/delete-producto-caracteristica";
 
 @Injectable({
   providedIn: 'root'
@@ -100,7 +102,16 @@ export class AppServiceService {
   getCaracteristicas(){
     return this.http.get<CaracteristicaInterface>(`${this.baseUrl}/caracteristica`)
   }
-  createCaracteristica(desc:string,idum:number,med:number){
+  createCaracteristica(desc:string){
+    return this.http.post<CaracteristicaInterface>(`${this.baseUrl}/caracteristica/create`,new AddCaracteristica(desc,1))
+  }
+  updateCaracteristica(id:number,desc:string){
+    return this.http.put<CaracteristicaInterface>(`${this.baseUrl}/caracteristica/update/${id}`,new AddCaracteristica(desc,1))
+  }
+  deleteCaracteristica(id:number){
+    return this.http.put<CaracteristicaInterface>(`${this.baseUrl}/caracteristica/delete/${id}`,'')
+  }
+  /*createCaracteristica(desc:string,idum:number,med:number){
     return this.http.post<CaracteristicaInterface>(`${this.baseUrl}/caracteristica/create`,new AddCaracteristica(desc,idum,med,1))
   }
   updateCaracteristica(id:number,desc:string,idum:number,med:number){
@@ -108,7 +119,7 @@ export class AppServiceService {
   }
   deleteCaracteristica(id:number){
     return this.http.put<CaracteristicaInterface>(`${this.baseUrl}/caracteristica/delete/${id}`,'')
-  }
+  }*/
   /*-------------------------------------------------------------------------------------*/
   /*------------------------------CARACTERISTICAS PRODCUTO-------------------------------*/
 
@@ -116,7 +127,13 @@ export class AppServiceService {
   getCaracteristicasByClave(clave:string){
     return this.http.get<ProductoCaracteristicaInterface>(`${this.baseUrl}/pc/${clave}`)
   }
-  getProductosC(){
-    return this.http.get<ProductoInterface>(`${this.baseUrl}/producto`)
+  getProductosCaracteristica(){
+    return this.http.get<ProductoCaracteristicaInterface>(`${this.baseUrl}/pc`)
+  }
+  addProductoCaracteristicas(pc:AddProductoCaracteristica[]){
+    return this.http.post(`${this.baseUrl}/pc/create`,pc)
+  }
+  deleteProductoCaracteristica(clave:string,id:number){
+    return this.http.post(`${this.baseUrl}/pc/delete`,new DeleteProductoCaracteristica(clave,id))
   }
 }
