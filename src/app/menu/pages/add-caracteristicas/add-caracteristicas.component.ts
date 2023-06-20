@@ -111,7 +111,7 @@ export class AddCaracteristicasComponent implements OnInit{
     this.service.addProductoCaracteristicas(this.c).subscribe(
       response=>{
         console.log(response)
-        alert('Las caracteristicas repetidas no se ingresan nuevamente')
+        console.log('Las caracteristicas repetidas no se ingresan nuevamente')
         /*this.ngOnInit()*/
         this.service.getCaracteristicasByClave(this.prod).subscribe(
           data=>{
