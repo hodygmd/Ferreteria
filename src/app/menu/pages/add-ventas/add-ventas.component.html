@@ -1,0 +1,113 @@
+<div class="text-center">
+  <label>
+    <p class="fw-bold">Empleados:</p>
+    <select [(ngModel)]="emp" class="ms-2" required (change)="change()">
+      <option *ngFor="let i of empleados" [value]="i.clave">{{i.nombre}}</option>
+    </select>
+  </label>
+</div>
+<div class="text-center mt-5">
+  <button class="custom-btn btn-5" (click)="addVenta()">
+    <span class="mx-3">Agregar Venta</span>
+  </button>
+</div>
+<div class="mx-5 mt-5">
+  <table bordered class="text-center table table-striped border border-2 border-dark">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Folio</th>
+      <th>Fecha</th>
+      <th>Total</th>
+      <th>Empleado</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    <tr class="align-middle trbody" *ngFor="let i of ventas;let j=index">
+      <td>{{j}}</td>
+      <td>{{i.folio}}</td>
+      <td>{{i.fecha}}</td>
+      <td>{{i.total}}</td>
+      <td>{{i.clave_empleado.nombre}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteVenta(i.folio)"><i class="bi bi-trash3"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text-center">
+  <label>
+    <p class="fw-bold">VENTAS:</p>
+    <select [(ngModel)]="ven" class="ms-2" required (change)="change()">
+      <option *ngFor="let i of ventas" [value]="i.folio">{{i.folio}}</option>
+    </select>
+  </label>
+</div>
+<div class="text-center mt-5">
+  <button class="custom-btn btn-5" data-bs-toggle="modal" data-bs-target="#productsModal"
+          (click)="setNull()">
+    <span class="mx-3">Agregar Productos</span>
+  </button>
+</div>
+<div class="mx-5 mt-5">
+  <table bordered class="text-center table table-striped border border-2 border-dark">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Folio</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    <tr class="align-middle trbody" *ngFor="let i of detalles;let j=index">
+      <td>{{j}}</td>
+      <td>{{i.folio_v.folio}}</td>
+      <td>{{i.clave_producto.nombre}}</td>
+      <td>{{i.cantidad}}</td>
+      <td>{{i.precio}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteDetalleVenta(i.id)"><i class="bi bi-trash3"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="productsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Caracteristicas</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex row justify-content-center">
+          <div class="caracteristicas-fondo text-center p-1 border rounded-2 col-3 mb-3 mx-3" *ngFor="let i of productos;let j=index">
+            <p class="fw-bold">{{i.nombre}}</p>
+            <label>
+              Cantidad:
+              <br>
+              <input type="number" class="ms-2" [(ngModel)]="cant[j]" style="width: 5rem">
+            </label>
+            <br><br>
+            <label>
+              Precio: ${{i.precio}}
+            </label>
+            <br><br>
+            <input type="checkbox" [(ngModel)]="checkboxMarcado[j]" id="{{i.id}}" [value]="i.clave" (change)="onCheckboxChange($event,j,i.id)">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <<button type="submit" class="btn btn-success" (click)="addDetallesVenta()"
+                data-bs-dismiss="modal">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

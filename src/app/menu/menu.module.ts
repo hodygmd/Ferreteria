@@ -9,6 +9,8 @@ import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { UnidadesMedidaComponent } from './pages/unidades-medida/unidades-medida.component';
 import { CaracteristicasComponent } from './pages/caracteristicas/caracteristicas.component';
 import { AddCaracteristicasComponent } from './pages/add-caracteristicas/add-caracteristicas.component';
+import { AddVentasComponent } from './pages/add-ventas/add-ventas.component';
+import { EmpleadosComponent } from './pages/empleados/empleados.component';
 
 
 
@@ -20,7 +22,9 @@ import { AddCaracteristicasComponent } from './pages/add-caracteristicas/add-car
     CategoriasComponent,
     UnidadesMedidaComponent,
     CaracteristicasComponent,
-    AddCaracteristicasComponent
+    AddCaracteristicasComponent,
+    AddVentasComponent,
+    EmpleadosComponent
   ],
   imports: [
     CommonModule,

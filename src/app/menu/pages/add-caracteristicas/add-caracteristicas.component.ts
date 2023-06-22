@@ -20,33 +20,10 @@ export class AddCaracteristicasComponent implements OnInit{
   uni:Array<number>=[]
   prod!:string
   med:Array<string>=[]
-  mostrar: boolean = true
-  mostrarT: boolean = true
   checkboxMarcado:Array<boolean> = []
-
-  ocultarBoton() {
-    this.mostrar = false;
-  }
-  ocultarTabla() {
-    this.mostrarT = false;
-  }
-  mostrarBoton() {
-    this.mostrar = true;
-  }
-  mostrarTabla() {
-    this.mostrarT = true;
-  }
-  /*carac:Array<number>=[]
-  un:Array<number>=[]*/
   constructor(private service:AppServiceService) {
   }
   ngOnInit(): void {
-    /*this.c=[]
-    this.med=[]
-    this.prod=''*/
-    /*this.ocultarTabla()
-    this.ocultarBoton()*/
-
     this.service.getProductos().subscribe(
       data=>{
         this.productos=data
@@ -82,7 +59,6 @@ export class AddCaracteristicasComponent implements OnInit{
   }
   onCheckboxChange(event: any,inde:number,id:number) {
     if(event.target.checked){
-      /*this.carac.push(parseInt(event.target.value))*/
       this.c.push(new AddProductoCaracteristica(this.prod,event.target.value,this.uni[inde],parseFloat(this.med[inde])))
     }else {
       /*console.log(event.target.value)
@@ -101,13 +77,8 @@ export class AddCaracteristicasComponent implements OnInit{
       }
 
     }
-    /*console.log(id)
-    console.log(this.c)*/
   }
   addCaracteristicas(){
-    /*for(let i=0;i<this.carac.length;i++){
-      this.c.push(new AddProductoCaracteristica(this.prod,this.carac[i],1,1))
-    }*/
     this.service.addProductoCaracteristicas(this.c).subscribe(
       response=>{
         console.log(response)
@@ -131,9 +102,6 @@ export class AddCaracteristicasComponent implements OnInit{
     this.service.getCaracteristicasByClave(this.prod).subscribe(
       data=>{
         this.pcs=data
-        this.mostrarBoton()
-        this.mostrarTabla()
-        this.checkboxMarcado=[]
       },error => {
         console.log(error)
       }
@@ -159,5 +127,6 @@ export class AddCaracteristicasComponent implements OnInit{
   setNull(){
     this.c=[]
     this.med=[]
+    this.checkboxMarcado=[]
   }
 }

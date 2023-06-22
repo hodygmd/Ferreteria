@@ -8,14 +8,11 @@
 </div>
 <div class="text-center mt-5">
   <button class="custom-btn btn-5" data-bs-toggle="modal" data-bs-target="#productsModal"
-          [hidden]="!mostrar" (click)="setNull()">
+          (click)="setNull()">
     <span class="mx-3">Agregar Caracteristica</span>
   </button>
 </div>
-<!--<div class="fixed-bottom d-flex justify-content-center pb-5">
-  <button class="btn btn-success" (click)="addCaracteristicas()">Agregar Caracteristicas</button>
-</div>-->
-<div class="mx-5 mt-5" [hidden]="!mostrarT">
+<div class="mx-5 mt-5">
   <table bordered class="text-center table table-striped border border-2 border-dark">
     <thead>
     <tr>
@@ -34,10 +31,6 @@
       <td>{{i.id_caracteristica.descripcion}}</td>
       <td>{{i.id_unidad_medida.unidad}}</td>
       <td>{{i.medida}}</td>
-      <!--<td>
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productsModal"
-                ><i class="bi bi-pencil-square"></i></button>
-      </td>-->
       <td>
         <button class="btn btn-danger" (click)="deleteProductoCaracteristica(i.clave_producto.clave,i.id_caracteristica.id)"><i class="bi bi-trash3"></i></button>
       </td>

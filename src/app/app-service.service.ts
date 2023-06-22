@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {
   CaracteristicaInterface,
-  CategoriaInterface,
+  CategoriaInterface, DetalleVentaInterface, EmpleadoInterface,
   MarcaInterface, ProductoCaracteristicaInterface,
   ProductoInterface,
-  UnidadMedidaInterface
+  UnidadMedidaInterface, VentaInterface
 } from "./Interfaces/producto-interface";
 import {AddProducto} from "./Classes/add-producto";
 import {AddMarca} from "./Classes/add-marca";
@@ -14,6 +14,9 @@ import {AddUnidadMedida} from "./Classes/add-unidad-medida";
 import {AddCaracteristica} from "./Classes/add-caracteristica";
 import {AddProductoCaracteristica} from "./Classes/add-producto-caracteristica";
 import {DeleteProductoCaracteristica} from "./Classes/delete-producto-caracteristica";
+import {AddVenta} from "./Classes/add-venta";
+import {AddDetalleVenta} from "./Classes/add-detalle-venta";
+import {AddEmpleado} from "./Classes/add-empleado";
 
 @Injectable({
   providedIn: 'root'
@@ -135,5 +138,47 @@ export class AppServiceService {
   }
   deleteProductoCaracteristica(clave:string,id:number){
     return this.http.post(`${this.baseUrl}/pc/delete`,new DeleteProductoCaracteristica(clave,id))
+  }
+  /*-------------------------------------------------------------------------------------*/
+  /*----------------------------------DETALLES VENTAS------------------------------------*/
+
+  /*-------------------------------------------------------------------------------------*/
+  getProductosByFolio(folio:string){
+    return this.http.get<DetalleVentaInterface>(`${this.baseUrl}/dv/${folio}`)
+  }
+  addDetalleVenta(dv:AddDetalleVenta[]){
+    return this.http.post(`${this.baseUrl}/dv/create`,dv)
+  }
+  deleteDetalleVenta(id:number){
+    return this.http.delete(`${this.baseUrl}/dv/delete/${id}`)
+  }
+  /*-------------------------------------------------------------------------------------*/
+  /*---------------------------------------VENTAS----------------------------------------*/
+
+  /*-------------------------------------------------------------------------------------*/
+  getVentas(){
+    return this.http.get<VentaInterface>(`${this.baseUrl}/venta`)
+  }
+  createVenta(folio:string,clave:string){
+    return this.http.post<VentaInterface>(`${this.baseUrl}/venta/create`,new AddVenta(folio,0,clave,1))
+  }
+  deleteVenta(folio:string){
+    return this.http.put<VentaInterface>(`${this.baseUrl}/venta/delete/${folio}`,'')
+  }
+  /*-------------------------------------------------------------------------------------*/
+  /*--------------------------------------EMPLEADOS--------------------------------------*/
+
+  /*-------------------------------------------------------------------------------------*/
+  getEmpleados(){
+    return this.http.get<EmpleadoInterface>(`${this.baseUrl}/empleado`)
+  }
+  createEmpleado(clave:string,nom:string){
+    return this.http.post<EmpleadoInterface>(`${this.baseUrl}/empleado/create`,new AddEmpleado(clave,nom,1))
+  }
+  updateEmpleado(clave:string,nom:string){
+    return this.http.put<EmpleadoInterface>(`${this.baseUrl}/empleado/update/${clave}`,new AddEmpleado(clave,nom,1))
+  }
+  deleteEmpleado(clave:string){
+    return this.http.put<EmpleadoInterface>(`${this.baseUrl}/empleado/delete/${clave}`,'')
   }
 }

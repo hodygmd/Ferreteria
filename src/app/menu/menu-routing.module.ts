@@ -8,6 +8,8 @@ import {CategoriasComponent} from "./pages/categorias/categorias.component";
 import {UnidadesMedidaComponent} from "./pages/unidades-medida/unidades-medida.component";
 import {CaracteristicasComponent} from "./pages/caracteristicas/caracteristicas.component";
 import {AddCaracteristicasComponent} from "./pages/add-caracteristicas/add-caracteristicas.component";
+import {AddVentasComponent} from "./pages/add-ventas/add-ventas.component";
+import {EmpleadosComponent} from "./pages/empleados/empleados.component";
 
 
 const routes: Routes=[
@@ -22,6 +24,8 @@ const routes: Routes=[
       {path: 'unidades-medida',component:UnidadesMedidaComponent},
       {path: 'categorias',component:CategoriasComponent},
       {path: 'marcas',component:MarcasComponent},
+      {path: 'add-ventas',component:AddVentasComponent},
+      {path: 'empleados',component:EmpleadosComponent},
       {path: '**',redirectTo:'productos'}
     ]}
 ]
