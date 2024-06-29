@@ -172,11 +172,14 @@ export class AppServiceService {
   getEmpleados(){
     return this.http.get<EmpleadoInterface>(`${this.baseUrl}/empleado`)
   }
-  createEmpleado(clave:string,nom:string){
-    return this.http.post<EmpleadoInterface>(`${this.baseUrl}/empleado/create`,new AddEmpleado(clave,nom,1))
+  createEmpleado(clave:string,nom:string,username:string,password:string){
+    return this.http.post<EmpleadoInterface>(`${this.baseUrl}/empleado/create`,new AddEmpleado(clave,nom,username,password,1))
   }
-  updateEmpleado(clave:string,nom:string){
-    return this.http.put<EmpleadoInterface>(`${this.baseUrl}/empleado/update/${clave}`,new AddEmpleado(clave,nom,1))
+  updateEmpleado(clave:string,nom:string,username:string,password:string){
+    return this.http.put<EmpleadoInterface>(`${this.baseUrl}/empleado/update/${clave}`,new AddEmpleado(clave,nom,username,password,1))
+  }
+  updatePassword(clave:string,nom:string,username:string,password:string){
+    return this.http.put<EmpleadoInterface>(`${this.baseUrl}/empleado/update-pass/${clave}`,new AddEmpleado(clave,nom,username,password,1))
   }
   deleteEmpleado(clave:string){
     return this.http.put<EmpleadoInterface>(`${this.baseUrl}/empleado/delete/${clave}`,'')

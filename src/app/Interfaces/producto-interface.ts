@@ -39,6 +39,8 @@ export interface UnidadMedidaInterface{
 export interface EmpleadoInterface{
   clave:string
   nombre:string
+  username:string
+  password:string
   status:number
 }
 export interface VentaInterface{

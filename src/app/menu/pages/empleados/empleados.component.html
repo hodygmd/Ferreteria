@@ -11,6 +11,8 @@
         <th>#</th>
         <th>Clave</th>
         <th>Nombre</th>
+        <th>Username</th>
+        <th></th>
         <th></th>
         <th></th>
       </tr>
@@ -20,7 +22,9 @@
         <td>{{j}}</td>
         <td>{{i.clave}}</td>
         <td>{{i.nombre}}</td>
+        <td>{{i.username}}</td>
         <td><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productsModal" (click)="updateEmpleado(j)"><i class="bi bi-pencil-square"></i></button></td>
+        <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#productsModal" (click)="updatePassword(j)"><i class="bi bi-person-lock"></i></button></td>
         <td><button class="btn btn-danger" (click)="deleteEmpleado(i.clave)"><i class="bi bi-trash3"></i></button></td>
       </tr>
       </tbody>
@@ -36,14 +40,24 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label>
-          Nombre:
-          <input type="text" class="ms-2" [(ngModel)]="nom">
-        </label>
+        <div class="d-flex flex-column">
+          <label *ngIf="!editarPass">
+            Nombre:
+            <input type="text" class="ms-2" [(ngModel)]="nom" required>
+          </label>
+          <label *ngIf="!editarPass">
+            Username:
+            <input type="text" class="ms-2 my-2" [(ngModel)]="user" required>
+          </label>
+          <label *ngIf="!editar||editarPass">
+            Password:
+            <input type="password" class="ms-2" [(ngModel)]="pass" required>
+          </label>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-success" (click)="createEmpleado(nom)" data-bs-dismiss="modal">{{textButtonSubmit}}</button>
+        <button type="submit" class="btn btn-success" (click)="createEmpleado(nom,user,pass)" data-bs-dismiss="modal">{{textButtonSubmit}}</button>
       </div>
     </div>
   </div>
